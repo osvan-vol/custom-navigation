@@ -1,280 +1,196 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<title>导航</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>导航</title>
+  <style>
+    :root{
+      --bg:#f5f9f4;
+      --card:#ffffff;
+      --border:#e6ebf0;
+      --text:#0f172a;
+      --muted:#64748b;
+      --primary:#6366f1;
+      --radius:16px;
+    }
 
-<style>
-:root{
-  --cream:#FBF8F2;
-  --mint:#F2F7F2;
-  --panel:#FFFFFF;
-  --text:#111827;
-  --muted:#6B7280;
-  --border:#E5E7EB;
-  --accent:#4F6CFF;
-}
-[data-theme="dark"]{
-  --cream:#020617;
-  --mint:#0F172A;
-  --panel:#020617;
-  --text:#E5E7EB;
-  --muted:#94A3B8;
-  --border:#1E293B;
-}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
+      background:var(--bg);
+      color:var(--text);
+    }
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--mint);
-  color:var(--text);
-}
+    /* ===== Header ===== */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(12px);
+      background:rgba(245,249,244,.7);
+      border-bottom:1px solid var(--border);
+    }
+    .header-inner{
+      max-width:1200px;
+      margin:0 auto;
+      padding:16px 24px;
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+    .logo{
+      font-size:20px;
+      font-weight:600;
+    }
+    .search{
+      flex:1;
+      position:relative;
+    }
+    .search input{
+      width:100%;
+      height:40px;
+      padding:0 44px 0 16px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-size:14px;
+    }
+    .search kbd{
+      position:absolute;
+      right:12px;
+      top:50%;
+      transform:translateY(-50%);
+      font-size:12px;
+      color:var(--muted);
+      background:#f1f5f9;
+      border-radius:6px;
+      padding:2px 6px;
+    }
 
-/* ===== Sticky Header ===== */
-header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:color-mix(in srgb, var(--cream) 80%, transparent);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
-}
-.header{
-  max-width:1100px;
-  margin:auto;
-  padding:32px 24px 28px;
-}
-.top{
-  display:flex;
-  align-items:center;
-  gap:24px;
-}
-h1{
-  font-size:28px;
-  margin:0;
-  white-space:nowrap;
-}
-.sub{
-  color:var(--muted);
-  margin-top:10px;
-}
+    /* ===== Layout ===== */
+    main{
+      max-width:1200px;
+      margin:0 auto;
+      padding:32px 24px 40px;
+    }
 
-/* ===== Search ===== */
-.search{
-  position:relative;
-  flex:1;
-  max-width:420px;
-}
-.search::before{
-  content:"/";
-  position:absolute;
-  left:14px;
-  top:50%;
-  transform:translateY(-50%);
-  color:#9CA3AF;
-}
-.search input{
-  width:100%;
-  padding:12px 16px 12px 36px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:var(--panel);
-}
-.search input:focus{
-  outline:none;
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(79,108,255,.15);
-}
+    section{
+      margin-bottom:32px; /* 核心：压缩 section 间距 */
+    }
 
-/* ===== Main ===== */
-main{
-  max-width:1100px;
-  margin:0 auto 80px;
-  padding:40px 32px;
-}
-section{margin-bottom:56px}
+    .section-head{
+      margin-bottom:12px; /* 标题贴近内容 */
+      font-size:14px;
+      font-weight:600;
+      color:var(--primary);
+    }
 
-/* ===== Section Header aligned to grid ===== */
-.section-head{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:16px;
-  margin-bottom:16px;
-}
-.section-head h2{
-  grid-column:1 / -1;
-  font-size:13px;
-  font-weight:600;
-  color:#6366F1;
-  letter-spacing:.04em;
-}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
 
-/* ===== Grid ===== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:16px;
-}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:18px 20px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-decoration:none;
+      color:inherit;
+      transition:transform .15s ease,box-shadow .15s ease;
+    }
+    .card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 20px rgba(15,23,42,.08);
+    }
+    .icon{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      background:#f1f5f9;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+      color:var(--primary);
+    }
+    .title{
+      font-weight:600;
+      font-size:15px;
+    }
+    .desc{
+      font-size:13px;
+      color:var(--muted);
+    }
 
-/* ===== Card ===== */
-.card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:16px;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  cursor:pointer;
-  transition:.2s;
-}
-.card:hover{transform:translateY(-3px)}
-
-/* ===== Icon ===== */
-.icon{
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  background:#F1F5F9;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-shrink:0;
-}
-[data-theme="dark"] .icon{background:#020617}
-.icon::after{
-  content:attr(data-fallback);
-  font-weight:600;
-  font-size:16px;
-  color:var(--accent);
-}
-.icon.has-img::after{display:none}
-.icon img{width:22px;height:22px}
-
-/* ===== Meta ===== */
-.meta strong{display:block}
-.meta span{font-size:13px;color:var(--muted)}
-
-footer{
-  text-align:center;
-  color:var(--muted);
-  font-size:13px;
-  padding-bottom:40px;
-}
-</style>
+    @media(max-width:900px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:480px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
-  <div class="header">
-    <div class="top">
-      <h1>导航</h1>
-      <div class="search">
-        <input id="search" placeholder="搜索站点…" />
-      </div>
-      <div id="theme" style="cursor:pointer">🌙</div>
+  <div class="header-inner">
+    <div class="logo">导航</div>
+    <div class="search">
+      <input placeholder="搜索站点…" />
+      <kbd>⌘K</kbd>
     </div>
-    <div class="sub">部署 · 监控 · 解码 · 域名 · AI</div>
   </div>
 </header>
 
 <main>
-  <section id="content"></section>
-</main>
 
-<footer>© 2026 Navigation</footer>
-
-<script>
-const data = [
- {cat:"AI 平台",name:"ChatGPT",desc:"OpenAI",url:"https://chat.openai.com",icon:"openai"},
- {cat:"AI 平台",name:"Gemini",desc:"Google",url:"https://gemini.google.com",icon:"google"},
- {cat:"AI 平台",name:"DeepSeek",desc:"模型平台",url:"https://www.deepseek.com",icon:""},
- {cat:"AI 平台",name:"Claude",desc:"Anthropic",url:"https://claude.ai",icon:"anthropic"},
-
- {cat:"部署 / 平台",name:"GitHub",desc:"代码托管",url:"https://github.com",icon:"github"},
- {cat:"部署 / 平台",name:"Cloudflare",desc:"CDN / 部署",url:"https://dash.cloudflare.com",icon:"cloudflare"},
- {cat:"部署 / 平台",name:"Render",desc:"应用部署",url:"https://dashboard.render.com",icon:""},
- {cat:"部署 / 平台",name:"Koyeb",desc:"应用部署",url:"https://www.koyeb.com",icon:""},
- {cat:"部署 / 平台",name:"Zeabur",desc:"应用部署",url:"https://zeabur.app",icon:""},
- {cat:"部署 / 平台",name:"ClawCloud",desc:"应用部署",url:"https://run.claw.cloud",icon:""},
- {cat:"部署 / 平台",name:"Leawlof",desc:"应用部署",url:"https://leaflow.net/login",icon:""},
-
- {cat:"监控 / 解码 / 检测",name:"Uptime Kuma",desc:"服务监控",url:"",icon:""},
- {cat:"监控 / 解码 / 检测",name:"CF Trace",desc:"网络检测",url:"https://www.cloudflare.com/cdn-cgi/trace",icon:"cloudflare"},
- {cat:"监控 / 解码 / 检测",name:"IPPure",desc:"IP 查询",url:"https://ippure.com",icon:""},
- {cat:"监控 / 解码 / 检测",name:"Scamalytics",desc:"风险分析",url:"https://scamalytics.com",icon:"shield"},
- {cat:"监控 / 解码 / 检测",name:"DNSChecker",desc:"DNS 检测",url:"https://dnschecker.org",icon:""},
- {cat:"监控 / 解码 / 检测",name:"ProxyIP",desc:"代理检测",url:"https://proxyip.chatkg.qzz.io",icon:""},
- {cat:"监控 / 解码 / 检测",name:"Base64 Decode",desc:"编码解码",url:"https://www.base64decode.org/zh/",icon:"code"},
- {cat:"监控 / 解码 / 检测",name:"Obfuscator",desc:"JS 混淆",url:"https://obfuscator.io/legacy-playground",icon:""},
-
- {cat:"域名 / DNS",name:"DNSHe",desc:"域名注册",url:"https://dnshe.com",icon:""},
- {cat:"域名 / DNS",name:"GV.UY",desc:"短域名",url:"https://gv.uy",icon:""},
- {cat:"域名 / DNS",name:"Digital",desc:"域名注册",url:"",icon:""},
- {cat:"域名 / DNS",name:"L53",desc:"域名管理",url:"https://customer.l53.net/",icon:""}
-];
-
-const content=document.getElementById("content");
-
-function makeCard(d){
-  const c=document.createElement("div");
-  c.className="card";
-  const letter=d.name[0].toUpperCase();
-  const hasIcon=!!d.icon;
-  c.innerHTML=`
-    <div class="icon ${hasIcon?'has-img':''}" data-fallback="${letter}">
-      ${hasIcon?`<img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${d.icon}.svg"
-      onerror="this.parentNode.classList.remove('has-img');this.remove()">`:""}
+  <section>
+    <div class="section-head">AI 平台</div>
+    <div class="grid">
+      <a class="card" href="https://chat.openai.com" target="_blank">
+        <div class="icon">C</div>
+        <div><div class="title">ChatGPT</div><div class="desc">OpenAI</div></div>
+      </a>
+      <a class="card" href="https://gemini.google.com" target="_blank">
+        <div class="icon">G</div>
+        <div><div class="title">Gemini</div><div class="desc">Google</div></div>
+      </a>
+      <a class="card" href="https://www.deepseek.com" target="_blank">
+        <div class="icon">D</div>
+        <div><div class="title">DeepSeek</div><div class="desc">模型平台</div></div>
+      </a>
+      <a class="card" href="https://claude.ai" target="_blank">
+        <div class="icon">AI</div>
+        <div><div class="title">Claude</div><div class="desc">Anthropic</div></div>
+      </a>
     </div>
-    <div class="meta">
-      <strong>${d.name}</strong>
-      <span>${d.desc}</span>
-    </div>`;
-  c.onclick=()=>d.url&&window.open(d.url,"_blank");
-  return c;
-}
+  </section>
 
-function render(){
-  content.innerHTML="";
-  [...new Set(data.map(d=>d.cat))].forEach(cat=>{
-    const s=document.createElement("section");
-    s.innerHTML=`
-      <div class="section-head"><h2>${cat}</h2></div>
-      <div class="grid"></div>`;
-    data.filter(d=>d.cat===cat)
-        .forEach(d=>s.querySelector(".grid").append(makeCard(d)));
-    content.append(s);
-  });
-}
-render();
+  <section>
+    <div class="section-head">部署 / 平台</div>
+    <div class="grid">
+      <a class="card" href="https://github.com" target="_blank"><div class="icon">GH</div><div><div class="title">GitHub</div><div class="desc">代码托管</div></div></a>
+      <a class="card" href="https://cloudflare.com" target="_blank"><div class="icon">CF</div><div><div class="title">Cloudflare</div><div class="desc">CDN / 部署</div></div></a>
+      <a class="card" href="https://render.com" target="_blank"><div class="icon">R</div><div><div class="title">Render</div><div class="desc">应用部署</div></div></a>
+      <a class="card" href="https://www.koyeb.com" target="_blank"><div class="icon">K</div><div><div class="title">Koyeb</div><div class="desc">应用部署</div></div></a>
+    </div>
+  </section>
 
-search.oninput=e=>{
-  const v=e.target.value.toLowerCase();
-  document.querySelectorAll(".card").forEach(c=>{
-    c.style.display=c.innerText.toLowerCase().includes(v)?"":"none";
-  });
-};
+  <section>
+    <div class="section-head">工具</div>
+    <div class="grid">
+      <a class="card" href="https://obfuscator.io/legacy-playground" target="_blank"><div class="icon">JS</div><div><div class="title">JS Obfuscator</div><div class="desc">代码混淆</div></div></a>
+    </div>
+  </section>
 
-document.addEventListener("keydown",e=>{
-  if(
-    (e.key==="/" && document.activeElement.tagName!=="INPUT") ||
-    ((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k")
-  ){
-    e.preventDefault();
-    search.focus();
-  }
-  if(e.key==="Escape") search.blur();
-});
-
-theme.onclick=()=>{
-  const t=document.documentElement.dataset.theme==="dark"?"":"dark";
-  document.documentElement.dataset.theme=t;
-  theme.textContent=t==="dark"?"☀️":"🌙";
-};
-</script>
+</main>
 
 </body>
 </html>
