@@ -7,76 +7,59 @@
 
 <style>
 :root{
-  /* === 核心配色 === */
-  --cream: #FCFBF7;   /* 奶白（暖） */
-  --mint:  #F2F8F4;   /* 奶绿 */
-  --panel: #ffffff;
-  --border:#E7E5DF;
-  --text:  #111827;
-  --muted: #6b7280;
+  --cream:#FBF8F2;        /* 奶白 */
+  --mint:#F2F7F2;         /* 奶绿 */
+  --panel:#FFFFFF;
+  --border:#E6E8EC;
+  --text:#111827;
+  --muted:#6B7280;
   --accent:#4F6CFF;
-  --radius:14px;
+  --radius:16px;
 }
 
-*{ box-sizing:border-box }
+*{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
-  Roboto,Helvetica,Arial,sans-serif;
-  background:var(--mint);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   color:var(--text);
+  background:var(--mint);
 }
 
-/* ===== 顶部：奶白层 ===== */
+/* ===== 顶部 ===== */
 header{
-  background:
-    radial-gradient(
-      720px 260px at 50% 120px,
-      rgba(255,248,230,.9),
-      transparent
-    ),
-    var(--cream);
-  border-bottom:1px solid var(--border);
-  box-shadow:0 8px 30px rgba(0,0,0,.03);
+  background:var(--cream);
+  padding:64px 24px 72px;
 }
 
 .header-inner{
   max-width:1100px;
   margin:auto;
-  padding:64px 24px 48px;
 }
 
-.title{
+h1{
+  font-size:34px;
+  margin:0 0 10px;
+  font-weight:800;
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-.title .dot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:var(--accent);
-}
-
-h1{
-  margin:0;
-  font-size:30px;
-  font-weight:700;
-  letter-spacing:-.02em;
+h1::before{
+  content:"●";
+  color:var(--accent);
+  font-size:14px;
 }
 
 .subtitle{
-  margin:8px 0 26px;
-  font-size:14px;
   color:var(--muted);
+  margin-bottom:32px;
 }
 
-/* 搜索框 */
 .search{
+  max-width:520px;
   position:relative;
-  max-width:460px;
 }
 
 .search::before{
@@ -85,84 +68,89 @@ h1{
   left:16px;
   top:50%;
   transform:translateY(-50%);
-  color:#9ca3af;
+  color:#9CA3AF;
   font-weight:600;
 }
 
 .search input{
   width:100%;
-  padding:16px 18px 16px 44px;
-  border-radius:18px;
+  padding:16px 18px 16px 46px;
+  border-radius:999px;
   border:1px solid var(--border);
   font-size:15px;
   outline:none;
   background:#fff;
   box-shadow:
-    0 22px 44px rgba(79,108,255,.18),
-    inset 0 0 0 1px rgba(79,108,255,.08);
+    0 12px 28px rgba(0,0,0,.08),
+    inset 0 0 0 1px rgba(0,0,0,.04);
 }
 
-/* ===== 下方：奶绿内容层 ===== */
+/* ===== 内容托盘 ===== */
 main{
   max-width:1100px;
-  margin:auto;
-  padding:52px 24px 32px;
-  display:grid;
-  gap:44px;
+  margin:-48px auto 80px;
+  padding:40px 28px;
+  background:rgba(255,255,255,.65);
+  backdrop-filter: blur(6px);
+  border-radius:28px;
+}
+
+/* ===== 分区 ===== */
+section{
+  margin-bottom:42px;
 }
 
 section h2{
-  margin:0 0 16px;
   font-size:14px;
-  font-weight:600;
-  color:#4338ca;
+  font-weight:700;
+  color:#4338CA;
+  margin-bottom:16px;
+  letter-spacing:.04em;
 }
 
+/* ===== 卡片 ===== */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
-  gap:16px;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:18px;
 }
 
-/* 卡片 */
 .card{
   display:flex;
   align-items:center;
   gap:14px;
-  padding:16px;
+  padding:18px;
+  border-radius:18px;
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:var(--radius);
   text-decoration:none;
   color:var(--text);
-  transition:.18s ease;
+  transition:.2s ease;
 }
 
 .card:hover{
   transform:translateY(-3px);
-  box-shadow:0 14px 28px rgba(0,0,0,.08);
+  box-shadow:0 14px 28px rgba(0,0,0,.12);
 }
 
-.icon-wrap{
-  width:42px;
-  height:42px;
+.icon{
+  width:44px;
+  height:44px;
   border-radius:12px;
-  background:#f1f5f9;
+  background:#F1F5F9;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-.icon-wrap img{
-  width:20px;
-  height:20px;
-  filter:grayscale(1);
+.icon img{
+  width:22px;
+  height:22px;
 }
 
 .meta strong{
   display:block;
   font-size:15px;
-  font-weight:600;
 }
 
 .meta span{
@@ -170,9 +158,10 @@ section h2{
   color:var(--muted);
 }
 
+/* ===== 页脚 ===== */
 footer{
   text-align:center;
-  padding:36px 24px;
+  padding:40px 0;
   font-size:13px;
   color:var(--muted);
 }
@@ -183,12 +172,8 @@ footer{
 
 <header>
   <div class="header-inner">
-    <div class="title">
-      <span class="dot"></span>
-      <h1>导航</h1>
-    </div>
+    <h1>导航</h1>
     <div class="subtitle">工具 · 部署 · 解码 · 检测 · 监控</div>
-
     <div class="search">
       <input id="search" placeholder="搜索 · GitHub / 部署 / 解码 / DNS…" />
     </div>
@@ -198,62 +183,127 @@ footer{
 <main>
 
 <section>
-  <h2>部署 / 平台</h2>
-  <div class="grid">
-    <a class="card" data-name="github" href="https://github.com" target="_blank">
-      <div class="icon-wrap">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg">
-      </div>
-      <div class="meta"><strong>GitHub</strong><span>代码托管</span></div>
-    </a>
+<h2>部署 / 平台</h2>
+<div class="grid">
 
-    <a class="card" data-name="cloudflare" href="https://dash.cloudflare.com" target="_blank">
-      <div class="icon-wrap">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cloudflare.svg">
-      </div>
-      <div class="meta"><strong>Cloudflare</strong><span>部署 / CDN</span></div>
-    </a>
+<a class="card" data-name="github 代码 托管" href="https://github.com" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg"></div>
+<div class="meta"><strong>GitHub</strong><span>代码托管</span></div>
+</a>
 
-    <a class="card" data-name="koyeb" href="https://www.koyeb.com/" target="_blank">
-      <div class="icon-wrap">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/koyeb.svg">
-      </div>
-      <div class="meta"><strong>Koyeb</strong><span>部署平台</span></div>
-    </a>
-  </div>
+<a class="card" data-name="cloudflare cdn 部署" href="https://dash.cloudflare.com" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cloudflare.svg"></div>
+<div class="meta"><strong>Cloudflare</strong><span>部署 / CDN</span></div>
+</a>
+
+<a class="card" data-name="render 部署 平台" href="https://dashboard.render.com/" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/render.svg"></div>
+<div class="meta"><strong>Render</strong><span>部署平台</span></div>
+</a>
+
+<a class="card" data-name="爪云 claw cloud" href="https://run.claw.cloud/" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg"></div>
+<div class="meta"><strong>Claw Cloud</strong><span>爪云部署</span></div>
+</a>
+
+<a class="card" data-name="zeabur 部署 平台" href="https://zeabur.app/" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vercel.svg"></div>
+<div class="meta"><strong>Zeabur</strong><span>部署平台</span></div>
+</a>
+
+<a class="card" data-name="koyeb 部署 平台" href="https://www.koyeb.com/" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/koyeb.svg"></div>
+<div class="meta"><strong>Koyeb</strong><span>部署平台</span></div>
+</a>
+
+<a class="card" data-name="leaflow 部署 平台" href="https://leaflow.net/login" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/leaflet.svg"></div>
+<div class="meta"><strong>Leaflow</strong><span>部署平台</span></div>
+</a>
+
+</div>
 </section>
 
 <section>
-  <h2>监控</h2>
-  <div class="grid">
-    <a class="card" data-name="uptime kuma" href="https://ugyy.enico.de5.net/status/eniac" target="_blank">
-      <div class="icon-wrap">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/uptimekuma.svg">
-      </div>
-      <div class="meta"><strong>Uptime Kuma</strong><span>服务状态</span></div>
-    </a>
-  </div>
+<h2>监控</h2>
+<div class="grid">
+<a class="card" data-name="uptime kuma 监控" href="https://ugyy.enico.de5.net/status/eniac" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/uptimekuma.svg"></div>
+<div class="meta"><strong>Uptime Kuma</strong><span>服务状态</span></div>
+</a>
+</div>
+</section>
+
+<section>
+<h2>检测 / 解码</h2>
+<div class="grid">
+
+<a class="card" data-name="ippure ip 查询" href="https://ippure.com" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/globe.svg"></div>
+<div class="meta"><strong>IPPure</strong><span>IP 查询</span></div>
+</a>
+
+<a class="card" data-name="scamalytics 风险" href="https://scamalytics.com" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/shield.svg"></div>
+<div class="meta"><strong>Scamalytics</strong><span>风险分析</span></div>
+</a>
+
+<a class="card" data-name="cf trace 网络" href="https://www.cloudflare.com/cdn-cgi/trace" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cloudflare.svg"></div>
+<div class="meta"><strong>CF Trace</strong><span>网络检测</span></div>
+</a>
+
+<a class="card" data-name="base64 编码 解码" href="https://www.base64decode.org/zh/" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/code.svg"></div>
+<div class="meta"><strong>Base64 Decode</strong><span>编码解码</span></div>
+</a>
+
+</div>
+</section>
+
+<section>
+<h2>官方 / 搜索</h2>
+<div class="grid">
+
+<a class="card" data-name="google 搜索" href="https://www.google.com" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg"></div>
+<div class="meta"><strong>Google</strong><span>搜索</span></div>
+</a>
+
+<a class="card" data-name="apple 官网" href="https://www.apple.com" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apple.svg"></div>
+<div class="meta"><strong>Apple</strong><span>官网</span></div>
+</a>
+
+</div>
 </section>
 
 </main>
 
-<footer>
-  © 2026 · Navigation
-</footer>
+<footer>© 2026 · Navigation</footer>
 
 <script>
 const search=document.getElementById("search");
 const cards=[...document.querySelectorAll(".card")];
+const clicks=JSON.parse(localStorage.getItem("clicks")||"{}");
+
+cards.forEach(c=>{
+  c.addEventListener("click",()=>{
+    const n=c.dataset.name;
+    clicks[n]=(clicks[n]||0)+1;
+    localStorage.setItem("clicks",JSON.stringify(clicks));
+  });
+});
 
 search.addEventListener("input",e=>{
   const v=e.target.value.toLowerCase();
   cards.forEach(c=>{
-    c.style.display=c.dataset.name.includes(v)?"":"none";
+    c.style.display=c.dataset.name.toLowerCase().includes(v)?"":"none";
   });
 });
 
 document.addEventListener("keydown",e=>{
-  if(e.key==="/" && document.activeElement!==search){
+  if(e.key==="/"&&document.activeElement!==search){
     e.preventDefault();
     search.focus();
   }
