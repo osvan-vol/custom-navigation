@@ -7,14 +7,14 @@
 
 <style>
 :root{
-  --cream:#FBF8F2;        /* 奶白 */
-  --mint:#F2F7F2;         /* 奶绿 */
+  --cream:#FBF8F2;
+  --mint:#F2F7F2;
   --panel:#FFFFFF;
   --border:#E6E8EC;
   --text:#111827;
   --muted:#6B7280;
   --accent:#4F6CFF;
-  --radius:16px;
+  --radius:18px;
 }
 
 *{box-sizing:border-box}
@@ -22,14 +22,14 @@
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  color:var(--text);
   background:var(--mint);
+  color:var(--text);
 }
 
-/* ===== 顶部 ===== */
+/* ===== Header ===== */
 header{
   background:var(--cream);
-  padding:64px 24px 72px;
+  padding:64px 24px 56px;
 }
 
 .header-inner{
@@ -78,37 +78,46 @@ h1::before{
   border-radius:999px;
   border:1px solid var(--border);
   font-size:15px;
-  outline:none;
   background:#fff;
-  box-shadow:
-    0 12px 28px rgba(0,0,0,.08),
-    inset 0 0 0 1px rgba(0,0,0,.04);
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  outline:none;
+}
+
+/* ===== 连接层（关键修复点） ===== */
+.divider{
+  height:32px;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.06),
+    rgba(0,0,0,0)
+  );
 }
 
 /* ===== 内容托盘 ===== */
 main{
   max-width:1100px;
-  margin:-48px auto 80px;
-  padding:40px 28px;
-  background:rgba(255,255,255,.65);
-  backdrop-filter: blur(6px);
-  border-radius:28px;
+  margin:-24px auto 80px;
+  padding:48px 32px;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(8px);
+  border-radius:32px;
+  box-shadow:0 30px 60px rgba(0,0,0,.12);
 }
 
-/* ===== 分区 ===== */
+/* ===== Sections ===== */
 section{
-  margin-bottom:42px;
+  margin-bottom:48px;
 }
 
 section h2{
   font-size:14px;
   font-weight:700;
   color:#4338CA;
-  margin-bottom:16px;
+  margin-bottom:18px;
   letter-spacing:.04em;
 }
 
-/* ===== 卡片 ===== */
+/* ===== Cards ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
@@ -120,7 +129,7 @@ section h2{
   align-items:center;
   gap:14px;
   padding:18px;
-  border-radius:18px;
+  border-radius:20px;
   background:var(--panel);
   border:1px solid var(--border);
   text-decoration:none;
@@ -158,7 +167,6 @@ section h2{
   color:var(--muted);
 }
 
-/* ===== 页脚 ===== */
 footer{
   text-align:center;
   padding:40px 0;
@@ -173,12 +181,14 @@ footer{
 <header>
   <div class="header-inner">
     <h1>导航</h1>
-    <div class="subtitle">工具 · 部署 · 解码 · 检测 · 监控</div>
+    <div class="subtitle">工具 · 部署 · 解码 · 检测 · 监控 · 域名</div>
     <div class="search">
-      <input id="search" placeholder="搜索 · GitHub / 部署 / 解码 / DNS…" />
+      <input id="search" placeholder="搜索 · GitHub / 部署 / DNS / 监控…" />
     </div>
   </div>
 </header>
+
+<div class="divider"></div>
 
 <main>
 
@@ -186,37 +196,37 @@ footer{
 <h2>部署 / 平台</h2>
 <div class="grid">
 
-<a class="card" data-name="github 代码 托管" href="https://github.com" target="_blank">
+<a class="card" data-name="github" href="https://github.com" target="_blank">
 <div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg"></div>
 <div class="meta"><strong>GitHub</strong><span>代码托管</span></div>
 </a>
 
-<a class="card" data-name="cloudflare cdn 部署" href="https://dash.cloudflare.com" target="_blank">
+<a class="card" data-name="cloudflare" href="https://dash.cloudflare.com" target="_blank">
 <div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cloudflare.svg"></div>
 <div class="meta"><strong>Cloudflare</strong><span>部署 / CDN</span></div>
 </a>
 
-<a class="card" data-name="render 部署 平台" href="https://dashboard.render.com/" target="_blank">
+<a class="card" data-name="render" href="https://dashboard.render.com/" target="_blank">
 <div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/render.svg"></div>
 <div class="meta"><strong>Render</strong><span>部署平台</span></div>
 </a>
 
-<a class="card" data-name="爪云 claw cloud" href="https://run.claw.cloud/" target="_blank">
+<a class="card" data-name="claw cloud" href="https://run.claw.cloud/" target="_blank">
 <div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg"></div>
-<div class="meta"><strong>Claw Cloud</strong><span>爪云部署</span></div>
+<div class="meta"><strong>Claw Cloud</strong><span>爪云</span></div>
 </a>
 
-<a class="card" data-name="zeabur 部署 平台" href="https://zeabur.app/" target="_blank">
+<a class="card" data-name="zeabur" href="https://zeabur.app/" target="_blank">
 <div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vercel.svg"></div>
 <div class="meta"><strong>Zeabur</strong><span>部署平台</span></div>
 </a>
 
-<a class="card" data-name="koyeb 部署 平台" href="https://www.koyeb.com/" target="_blank">
+<a class="card" data-name="koyeb" href="https://www.koyeb.com/" target="_blank">
 <div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/koyeb.svg"></div>
 <div class="meta"><strong>Koyeb</strong><span>部署平台</span></div>
 </a>
 
-<a class="card" data-name="leaflow 部署 平台" href="https://leaflow.net/login" target="_blank">
+<a class="card" data-name="leaflow" href="https://leaflow.net/login" target="_blank">
 <div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/leaflet.svg"></div>
 <div class="meta"><strong>Leaflow</strong><span>部署平台</span></div>
 </a>
@@ -225,54 +235,37 @@ footer{
 </section>
 
 <section>
-<h2>监控</h2>
+<h2>监控 / 解码 / 检测 / 域名</h2>
 <div class="grid">
-<a class="card" data-name="uptime kuma 监控" href="https://ugyy.enico.de5.net/status/eniac" target="_blank">
+
+<a class="card" data-name="uptime kuma" href="https://ugyy.enico.de5.net/status/eniac" target="_blank">
 <div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/uptimekuma.svg"></div>
-<div class="meta"><strong>Uptime Kuma</strong><span>服务状态</span></div>
+<div class="meta"><strong>Uptime Kuma</strong><span>服务监控</span></div>
 </a>
-</div>
-</section>
 
-<section>
-<h2>检测 / 解码</h2>
-<div class="grid">
-
-<a class="card" data-name="ippure ip 查询" href="https://ippure.com" target="_blank">
+<a class="card" data-name="ippure" href="https://ippure.com" target="_blank">
 <div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/globe.svg"></div>
 <div class="meta"><strong>IPPure</strong><span>IP 查询</span></div>
 </a>
 
-<a class="card" data-name="scamalytics 风险" href="https://scamalytics.com" target="_blank">
-<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/shield.svg"></div>
-<div class="meta"><strong>Scamalytics</strong><span>风险分析</span></div>
+<a class="card" data-name="dnshe" href="https://dnshe.com" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/internetexplorer.svg"></div>
+<div class="meta"><strong>DNSHe</strong><span>DNS 查询</span></div>
 </a>
 
-<a class="card" data-name="cf trace 网络" href="https://www.cloudflare.com/cdn-cgi/trace" target="_blank">
-<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cloudflare.svg"></div>
-<div class="meta"><strong>CF Trace</strong><span>网络检测</span></div>
+<a class="card" data-name="gv uy 域名" href="https://gv.uy" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/link.svg"></div>
+<div class="meta"><strong>gv.uy</strong><span>域名服务</span></div>
 </a>
 
-<a class="card" data-name="base64 编码 解码" href="https://www.base64decode.org/zh/" target="_blank">
+<a class="card" data-name="digitalplat 域名" href="https://dash.domain.digitalplat.org/auth/register" target="_blank">
+<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/world.svg"></div>
+<div class="meta"><strong>DigitalPlat</strong><span>域名注册</span></div>
+</a>
+
+<a class="card" data-name="base64" href="https://www.base64decode.org/zh/" target="_blank">
 <div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/code.svg"></div>
 <div class="meta"><strong>Base64 Decode</strong><span>编码解码</span></div>
-</a>
-
-</div>
-</section>
-
-<section>
-<h2>官方 / 搜索</h2>
-<div class="grid">
-
-<a class="card" data-name="google 搜索" href="https://www.google.com" target="_blank">
-<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg"></div>
-<div class="meta"><strong>Google</strong><span>搜索</span></div>
-</a>
-
-<a class="card" data-name="apple 官网" href="https://www.apple.com" target="_blank">
-<div class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apple.svg"></div>
-<div class="meta"><strong>Apple</strong><span>官网</span></div>
 </a>
 
 </div>
@@ -285,20 +278,11 @@ footer{
 <script>
 const search=document.getElementById("search");
 const cards=[...document.querySelectorAll(".card")];
-const clicks=JSON.parse(localStorage.getItem("clicks")||"{}");
-
-cards.forEach(c=>{
-  c.addEventListener("click",()=>{
-    const n=c.dataset.name;
-    clicks[n]=(clicks[n]||0)+1;
-    localStorage.setItem("clicks",JSON.stringify(clicks));
-  });
-});
 
 search.addEventListener("input",e=>{
   const v=e.target.value.toLowerCase();
   cards.forEach(c=>{
-    c.style.display=c.dataset.name.toLowerCase().includes(v)?"":"none";
+    c.style.display=c.dataset.name.includes(v)?"":"none";
   });
 });
 
