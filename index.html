@@ -181,22 +181,23 @@ section{margin-bottom:32px}
 
 <script>
 /* ========= favicon：有才显示，没有就保留字母 ========= */
-document.querySelectorAll('.icon').forEach(icon=>{
+document.querySelectorAll('.icon').forEach(icon => {
   const link = icon.closest('a');
-  if(!link) return;
+  if (!link) return;
 
-  let hostname;
-  try{
-    hostname = new URL(link.href).hostname;
-  }catch{
+  let url;
+  try {
+    const u = new URL(link.href);
+    url = u.origin + '/favicon.ico';
+  } catch {
     return;
   }
 
-  const img = new Image();
-  img.src = `https://www.google.com/s2/favicons?sz=64&domain=${hostname}&fallback=404`;
+  const img = document.createElement('img');
+  img.src = url;
 
-  img.onload = ()=>{
-    icon.textContent='';
+  img.onload = () => {
+    icon.textContent = '';
     icon.appendChild(img);
   };
 });
